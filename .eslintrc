@@ -1,11 +1,8 @@
 env:
   node: true
-  browser: true
 globals:
-  angular: true
   require: true
   LocalFileSystem: true
-  FastClick: true
 extends:
   - airbnb-base
 rules:
