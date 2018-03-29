@@ -1,6 +1,7 @@
-/*jslint node: true */
-"use strict";
-var check_daemon = require('core/check_daemon.js');
+/* jslint node: true */
 
-check_daemon.checkDaemonAndRestart('node explorer.js', 'node explorer.js > log');
+'use strict';
 
+const checkDaemon = require('core/check_daemon.js');
+
+checkDaemon.checkDaemonAndRestart('node explorer.js', 'node explorer.js > log');
