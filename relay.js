@@ -8,9 +8,9 @@ const myWitnesses = require('core/my_witnesses.js');
 
 function replaceConsoleLog() {
     const clog = console.log;
-    console.log = function (...arguments) {
+    console.log = function () {
         Array.prototype.unshift.call(arguments, `${Date().toString()}:`);
-        clog(...arguments);
+        clog(null, arguments);
 	};
 }
 
