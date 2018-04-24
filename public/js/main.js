@@ -27,7 +27,7 @@ function init(_nodes, _edges) {
 	createCy();
 	generate(_nodes, _edges);
 	oldOffset = _cy.getElementById(nodes[0].data.unit).position().y + 66;
-	_cy.viewport({zoom: 1.01});
+	_cy.viewport({zoom: 1.00});
 	_cy.center(_cy.nodes()[0]);
 	page = 'dag';
 
@@ -74,7 +74,7 @@ function createCy() {
 					'text-margin-y': '5px',
 					'background-color': '#fff',
 					'border-width': 1,
-					'border-color': '#2980b9',
+					'border-color': '#d41f26',
 					//	'border-color': '#333',
 					//	'border-style': 'dotted',
 					'width': 25,
@@ -102,8 +102,8 @@ function createCy() {
 				style: {
 					'width': 2,
 					'target-arrow-shape': 'triangle',
-					'line-color': '#2980b9',
-					'target-arrow-color': '#2980b9',
+					'line-color': '#41f26',
+					'target-arrow-color': '#41f26',
 					'curve-style': 'bezier'
 				}
 			},
@@ -112,8 +112,8 @@ function createCy() {
 				style: {
 					'width': 5,
 					'target-arrow-shape': 'triangle',
-					'line-color': '#2980b9',
-					'target-arrow-color': '#2980b9',
+					'line-color': '#41f26',
+					'target-arrow-color': '#41f26',
 					'curve-style': 'bezier'
 				}
 			},
@@ -122,25 +122,25 @@ function createCy() {
 				style: {
 					//	'border-width': 4,
 					//	'border-style': 'solid',
-					//	'border-color': '#2980b9'
+					//	'border-color': '#41f26'
 					//	'border-color': '#333'
-					'background-color': '#9cc0da'
+					'background-color': '#e7777d'
 				}
 			},
 			{
 				selector: '.is_stable',
 				style: {
-					//	'background-color': '#2980b9'
+					//	'background-color': '#41f26'
 					'border-width': 4,
 					'border-style': 'solid',
-					'border-color': '#2980b9',
-					//	'background-color': '#9cc0da'
+					'border-color': '#41f26',
+					//	'background-color': '#e7777d'
 				}
 			},
 			{
 				selector: '.active',
 				style: {
-					//	'background-color': '#2980b9',
+					//	'background-color': '#41f26',
 					'border-color': '#333',
 					'border-width': '4'
 				}
@@ -607,6 +607,9 @@ function goToTop() {
 	$('#listInfo').hide();
 }
 
+function resetViewport(){
+  _cy.viewport({zoom: 1.00});
+}                         
 //events
 window.addEventListener('hashchange', function() {
 	if (location.hash.length == 45) {
@@ -713,7 +716,7 @@ function generateMessageInfo(messages, transfersInfo, outputsUnit, assocCommissi
 				'<div class="message">' +
 				'<div class="message_app infoTitleChild" onclick="showHideBlock(event, \'message_' + blockId + '\')">';
 			if (message.app == 'payment') {
-				messagesOut += message.app.substr(0, 1).toUpperCase() + message.app.substr(1) + ' in ' + (asset == 'null' ? 'bytes' : asset);
+				messagesOut += message.app.substr(0, 1).toUpperCase() + message.app.substr(1) + ' in ' + (asset == 'null' ? 'DAG' : asset);
 			}
 			else if (message.app == 'asset') {
 				messagesOut += 'Definition of new asset';
@@ -1130,7 +1133,8 @@ function convertPosPanToPosScroll(posY, topPos) {
 //Numbers
 
 function numberFormat(number) {
-	return number.replace(new RegExp("^(\\d{" + (number.length % 3 ? number.length % 3 : 0) + "})(\\d{3})", "g"), "$1 $2").replace(/(\d{3})+?/gi, "$1 ").trim().replace(/\s/gi, ",");
+  number = (parseInt(number) * 0.000001).toString();
+	return number.replace(new RegExp("^(\\d{" + (number.length % 3 ? number.length % 3 : 0) + "})(\\d{3})", "g"), "$1$2").replace(/(\d{3})+?/gi, "$1").trim();
 }
 
 function formatAllNumbers() {
