@@ -74,8 +74,8 @@ function createCy() {
 					'text-margin-y': '5px',
 					'background-color': '#fff',
 					'border-width': 1,
-					'border-color': '#d41f26',
-					//	'border-color': '#333',
+					'border-color': '#2980b9',
+					//	 'border-color': '#333',
 					//	'border-style': 'dotted',
 					'width': 25,
 					'height': 25
@@ -102,8 +102,8 @@ function createCy() {
 				style: {
 					'width': 2,
 					'target-arrow-shape': 'triangle',
-					'line-color': '#41f26',
-					'target-arrow-color': '#41f26',
+					'line-color': '#2980b9',
+					'target-arrow-color': '#2980b9',
 					'curve-style': 'bezier'
 				}
 			},
@@ -112,8 +112,8 @@ function createCy() {
 				style: {
 					'width': 5,
 					'target-arrow-shape': 'triangle',
-					'line-color': '#41f26',
-					'target-arrow-color': '#41f26',
+					'line-color': '#2980b9',
+					'target-arrow-color': '#2980b9',
 					'curve-style': 'bezier'
 				}
 			},
@@ -122,25 +122,25 @@ function createCy() {
 				style: {
 					//	'border-width': 4,
 					//	'border-style': 'solid',
-					//	'border-color': '#41f26'
+					//	'border-color': '#2980b9'
 					//	'border-color': '#333'
-					'background-color': '#e7777d'
+					'background-color': '#9cc0da'
 				}
 			},
 			{
 				selector: '.is_stable',
 				style: {
-					//	'background-color': '#41f26'
+					//	'background-color': '#2980b9'
 					'border-width': 4,
 					'border-style': 'solid',
-					'border-color': '#41f26',
-					//	'background-color': '#e7777d'
+					'border-color': '#2980b9',
+					//	'background-color': '#9cc0da'
 				}
 			},
 			{
 				selector: '.active',
 				style: {
-					//	'background-color': '#41f26',
+					//	'background-color': '#2980b9',
 					'border-color': '#333',
 					'border-width': '4'
 				}
@@ -1143,29 +1143,6 @@ function formatAllNumbers() {
 		$(numbersSpan[a]).addClass('format').html(numberFormat(v.innerHTML));
 	})
 }
-
-$(document).on('mousedown', '.numberFormat', function(e) {
-	var self = $(this);
-	if (self.hasClass('format')) {
-		self.html(self.html().replace(/\,/g, '')).removeClass('format');
-	}
-});
-$(document).on('touchstart', '.numberFormat', function() {
-	var self = $(this);
-	if (self.hasClass('format')) {
-		self.html(self.html().replace(/\,/g, '')).removeClass('format');
-	}
-});
-$(document).on('mouseout', '.numberFormat', function() {
-	var self = $(this);
-	if (!self.hasClass('format')) {
-		self.addClass('format');
-		setTimeout(function() {
-			self.html(numberFormat(self.html()));
-		}, 250);
-	}
-});
-
 
 //escape
 function htmlEscape(str) {
