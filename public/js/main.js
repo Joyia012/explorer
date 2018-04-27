@@ -710,7 +710,7 @@ socket.on('prev', function(data) {
 function generateMessageInfo(messages, transfersInfo, outputsUnit, assocCommissions) {
 	var messagesOut = '', blockId = 0, key, asset, shownHiddenPayments = false;
 	messages.forEach(function(message) {
-		if (message.payload) {
+		if (message.payload && message.payload !== '{}') {
 			asset = message.payload.asset || 'null';
 			messagesOut +=
 				'<div class="message">' +
@@ -776,7 +776,9 @@ function generateMessageInfo(messages, transfersInfo, outputsUnit, assocCommissi
 					}
 					break;
 				case 'text':
-					messagesOut += '<div>Text: ' + htmlEscape(message.payload) + '</div>';
+          if (message.payload !== '{}') {
+            messagesOut += '<div>Text: ' + htmlEscape(message.payload) + '</div>';
+          }
 					break;
 				default:
 					for (var key_payload in message.payload) {
