@@ -750,7 +750,7 @@ function generateMessageInfo(messages, transfersInfo, outputsUnit, assocCommissi
 								key = input.from_main_chain_index + '_' + input.to_main_chain_index;
 								var objName = (input.type === 'headers_commission' ? 'headers' : (input.type === 'witnessing' ? 'witnessing' : false));
 								if (objName) {
-									messagesOut += '<div><span class="numberFormat">' + assocCommissions[objName][key].sum + '</span> bytes of ' + objName + ' commissions on <a href="#' + assocCommissions[objName][key].address + '">' + assocCommissions[objName][key].address + '</a>' +
+									messagesOut += '<div><span class="numberFormat">' + assocCommissions[objName][key].sum + '</span> DAGs of ' + objName + ' commissions on <a href="#' + assocCommissions[objName][key].address + '">' + assocCommissions[objName][key].address + '</a>' +
 										' from mci ' + assocCommissions[objName][key].from_mci + ' to mci ' + assocCommissions[objName][key].to_mci + '</div>';
 								}
 							}
@@ -910,14 +910,14 @@ function generateTransactionsList(objTransactions, address) {
 					listTransactions += '<div class="transactionUnitListAddress">' +
 						'<div>' + addressOut + ' ' + commissionName + ' commissions from mci ' + objFrom.from_mci +
 						' to mci ' + objFrom.to_mci + '.' +
-						' Sum: <span class="numberFormat">' + objFrom.sum + '</span> bytes</div>' +
+						' Sum: <span class="numberFormat">' + objFrom.sum + '</span> DAGs</div>' +
 						'</div>';
 				}
 			}
 			else {
 				addressOut = objFrom.address == address ? '<span class="thisAddress">' + objFrom.address + '</span>' : '<a href="#' + objFrom.address + '">' + objFrom.address + '</a>';
 				listTransactions += '<div class="transactionUnitListAddress"><div>' + addressOut + '</div>' +
-					'<div>(<span class="numberFormat">' + objFrom.amount + '</span> ' + (transaction.asset == null ? 'bytes' : transaction.asset) + ')</div></div>';
+					'<div>(<span class="numberFormat">' + objFrom.amount + '</span> ' + (transaction.asset == null ? 'DAGs' : transaction.asset) + ')</div></div>';
 			}
 		});
 		listTransactions += '</td><td><img width="32" src="' + (transaction.spent ? '/img/red_right2.png' : '/img/green_right2.png') + '"></td><td>';
@@ -926,7 +926,7 @@ function generateTransactionsList(objTransactions, address) {
 			addressOut = _addressTo.address == address ? '<span class="thisAddress">' + _addressTo.address + '</span>' : '<a href="#' + _addressTo.address + '">' + _addressTo.address + '</a>';
 
 			listTransactions += '<div class="transactionUnitListAddress"><div>' + addressOut + '</div>' +
-				'<div>(<span class="numberFormat">' + _addressTo.amount + '</span> ' + (transaction.asset == null ? 'bytes' : transaction.asset) + ', ' +
+				'<div>(<span class="numberFormat">' + _addressTo.amount + '</span> ' + (transaction.asset == null ? 'DAGs' : transaction.asset) + ', ' +
 				(_addressTo.spent === 0 ? 'not spent' : 'spent in ' + '<a href="#' + _addressTo.spent + '">' + _addressTo.spent + '</a>') +
 				')</div></div>';
 		}
@@ -943,7 +943,7 @@ socket.on('addressInfo', function(data) {
 		nextPageTransactionsEnd = data.end;
 		for (var k in data.objBalance) {
 			if (k === 'bytes') {
-				balance += '<div><span class="numberFormat">' + data.objBalance[k] + '</span> bytes</div>';
+				balance += '<div><span class="numberFormat">' + data.objBalance[k] + '</span> DAGs</div>';
 			}
 			else {
 				balance += '<div><span class="numberFormat">' + data.objBalance[k] + '</span> of ' + k + '</div>';
@@ -951,7 +951,7 @@ socket.on('addressInfo', function(data) {
 		}
 		if(data.unspent) {
 			data.unspent.forEach(function(row) {
-				listUnspent += '<div><a href="#' + row.unit + '">' + row.unit + '</a> (<span class="numberFormat">' + row.amount + '</span> ' + (row.asset == null ? 'bytes' : row.asset) + ')</div>';
+				listUnspent += '<div><a href="#' + row.unit + '">' + row.unit + '</a> (<span class="numberFormat">' + row.amount + '</span> ' + (row.asset == null ? 'DAGs' : row.asset) + ')</div>';
 			});
 		}
 		$('#address').html(data.address);
