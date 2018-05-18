@@ -9,7 +9,7 @@
 },{
   "name"       : "testnet-explorer",
   "script"     : "explorer.js",
-  "pid_file"  : "/home/experimental/.pm2/pids/explorer.pid",
+  "pid_file"  : "/home/experimental/.pm2/pids/testnet-explorer.pid",
   "exec_mode"  : "cluster"
   "watch"     : true,
   "autorestart" : true,
