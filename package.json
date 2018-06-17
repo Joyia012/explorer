@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "async": "^2.1.5",
-    "core": "git+https://github.com/dagcoin/core.git",
+    "core": "git+https://github.com/m42cx/TravelFlexCore.git",
     "express": "^4.14.0",
     "moment": "^2.17.1",
     "socket.io": "^1.7.1"
